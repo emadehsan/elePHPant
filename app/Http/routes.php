@@ -35,4 +35,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', function() {
         return view('ide');
     });
+
+    Route::get('/codes', function() {
+        return view('codes');
+    });
 });

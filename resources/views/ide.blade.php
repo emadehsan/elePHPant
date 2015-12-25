@@ -45,7 +45,22 @@ body {
     <div class="row">
         <form class="col-md-6" id="left-pane">
             <h3>PHP here</h3>
-            <textarea class="form-control lined" rows="25" id="code" placeholder="Your script here"></textarea>
+<textarea class="form-control lined" rows="30" id="code" placeholder="Your script here">
+<?php echo '<?php';?>
+
+/* This class shows the power of a php editor*/
+class Ultra extends Violet
+{
+	private var $msg = 'Hello World';
+	private var $display = false;
+
+	public function printMsg() {
+		if (display)
+			echo $this->msg;
+		else
+			echo 'Cannot Process request';
+	}
+}</textarea>
 
             <hr>
             <button class="btn btn-success">Save</button>
