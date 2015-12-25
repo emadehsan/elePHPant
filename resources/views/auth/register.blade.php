@@ -13,7 +13,7 @@
     .container {
         margin: 5% ;
     }
-    .container h1, .container h3 {
+    .container h3, .container h1 {
         margin: auto;
         max-width: 50%;
     }
