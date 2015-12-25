@@ -37,6 +37,11 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('/codes', function() {
-        return view('codes');
+        $codes = App\Code::all();
+        return view('codes', ['codes' => $codes]);
     });
+
+
+    Route::get('/{user_id}/code', 'CodeController@getCode');
+    Route::post('/{user_id}/code', 'CodeController@saveCode');
 });
