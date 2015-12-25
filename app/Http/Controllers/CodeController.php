@@ -12,18 +12,40 @@ use App\Http\Controllers\Controller;
 
 class CodeController extends Controller
 {
-    public function saveCode(Request $req, $user_id)
-    {
-        // dd(Auth::user());
 
-        $code = new Code;
+    /**
+    * saves code
+    * executes & display results & code in IDE
+    */
+    public function saveExecCode(Request $req, $user_id)
+    {
+
+        dd($req->all());
+
+        $prevCode = Code::where('user_id', '=', $user_id)->first();
+
+        $code = null;
+        if ($prevCode->id > 1)
+            $code = $prevCode;
+        else
+            $code = new Code;
+            
         $code->code = $req->code;
         $code->user_id = $user_id;
         $code->save();
 
-        return response()->json(['msg' => 'saved']);
+        return $this->getIDE($user_id);
     }
 
+    // displays code in IDE
+    public function getIDE ($user_id)
+    {
+        $code = Code::where('user_id', '=', $user_id)->first();
+        return view('ide', ['user_id' => $user_id, 'code' => $code->code]);
+    }
+
+
+    // shows code to admin
     public function getCode($user_id)
     {
         $code = Code::where('user_id', '=', $user_id)->first();

@@ -17,16 +17,16 @@ body {
 
 <!-- CodeMirror Files -->
 <!-- PATH : /cm510/mode/php/ -->
-<link rel=stylesheet href="cm510/doc/docs.css">
-<link rel="stylesheet" href="cm510/lib/codemirror.css">
-<script src="cm510/lib/codemirror.js"></script>
-<script src="cm510/addon/edit/matchbrackets.js"></script>
-<script src="cm510/mode/htmlmixed/htmlmixed.js"></script>
-<script src="cm510/mode/xml/xml.js"></script>
-<script src="cm510/mode/javascript/javascript.js"></script>
-<script src="cm510/mode/css/css.js"></script>
-<script src="cm510/mode/clike/clike.js"></script>
-<script src="cm510/mode/php/php.js"></script>
+<link rel=stylesheet href="/cm510/doc/docs.css">
+<link rel="stylesheet" href="/cm510/lib/codemirror.css">
+<script src="/cm510/lib/codemirror.js"></script>
+<script src="/cm510/addon/edit/matchbrackets.js"></script>
+<script src="/cm510/mode/htmlmixed/htmlmixed.js"></script>
+<script src="/cm510/mode/xml/xml.js"></script>
+<script src="/cm510/mode/javascript/javascript.js"></script>
+<script src="/cm510/mode/css/css.js"></script>
+<script src="/cm510/mode/clike/clike.js"></script>
+<script src="/cm510/mode/php/php.js"></script>
 
 <style type="text/css">
 .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
@@ -34,6 +34,30 @@ body {
     background-color: white;
 }
 </style>
+
+
+<script>
+// function save() {
+//     var code = $("#code").text();
+//     var user_id = $("#user_id");
+//     $.ajax({
+//         type: "POST",
+//         url: "/" + {{$user_id}} + "/code",
+//         data: {
+//             "code": code,
+//             "_token": {!! csrf_field() !!}
+//         },
+//         success: function(data) {
+//             alert('data sent success!');
+//         },
+//         dataType: 'json'
+//     });
+//
+//     console.log('requested');
+//
+// }
+//
+</script>
 
 </head>
 <body>
@@ -43,31 +67,21 @@ body {
     <a id="admin-link" class="glyphicon glyphicon-triangle-left" href="/codes">View Scripts</a>
     <a id="admin-link" class="pull-right" href="/auth/logout">Logout</a>
     <div class="row">
-        <form class="col-md-6" id="left-pane">
+        <form
+        class="col-md-6"
+        method="post"
+        action="/{{$user_id}}/ide"
+        id="left-pane">
             <h3>PHP here</h3>
-<textarea class="form-control lined" rows="30" id="code" placeholder="Your script here">
-<?php echo '<?php';?>
-
-/* This class shows the power of a php editor*/
-class Ultra extends Violet
-{
-	private var $msg = 'Hello World';
-	private var $display = false;
-
-	public function printMsg() {
-		if (display)
-			echo $this->msg;
-		else
-			echo 'Cannot Process request';
-	}
-}</textarea>
+            {!! csrf_field() !!}
+            <textarea name="code" class="form-control lined" rows="30" id="code" placeholder="Your script here"><?php echo '<?php';?>{{$code}}</textarea>
 
             <hr>
-            <button class="btn btn-success">Save</button>
-            <button class="btn btn-primary">Execute</button>
+            <button onclick="save();" class="btn btn-success pull-right">Save & Execute</button>
         </form>
         <div class="col-md-6" id="right-pane">
             <h3>Results</h3>
+            <div class="result">@yield('result')</div>
         </div>
     </div>
 

@@ -32,16 +32,23 @@ Route::group(['middleware' => ['web']], function () {
         'password'  => 'Auth\PasswordController'
     ]);
 
-    Route::get('/home', function() {
-        return view('ide');
+    Route::get('home', function() {
+        return 'Home';
     });
 
+    // for user to view & edit code
+    Route::get('/{user_id}/ide', 'CodeController@getIDE');
+    // for user to save & execute code
+    Route::post('/{user_id}/ide', 'CodeController@saveExecCode');
+
     Route::get('/codes', function() {
+        // list of codes
         $codes = App\Code::all();
         return view('codes', ['codes' => $codes]);
     });
 
 
+    // for admin to view code
     Route::get('/{user_id}/code', 'CodeController@getCode');
-    Route::post('/{user_id}/code', 'CodeController@saveCode');
+    // Route::post('/{user_id}/code', 'CodeController@saveCode');
 });

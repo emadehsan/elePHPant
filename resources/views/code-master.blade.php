@@ -17,16 +17,16 @@ body {
 
 <!-- CodeMirror Files -->
 <!-- PATH : /cm510/mode/php/ -->
-<link rel=stylesheet href="cm510/doc/docs.css">
-<link rel="stylesheet" href="cm510/lib/codemirror.css">
-<script src="cm510/lib/codemirror.js"></script>
-<script src="cm510/addon/edit/matchbrackets.js"></script>
-<script src="cm510/mode/htmlmixed/htmlmixed.js"></script>
-<script src="cm510/mode/xml/xml.js"></script>
-<script src="cm510/mode/javascript/javascript.js"></script>
-<script src="cm510/mode/css/css.js"></script>
-<script src="cm510/mode/clike/clike.js"></script>
-<script src="cm510/mode/php/php.js"></script>
+<link rel=stylesheet href="/cm510/doc/docs.css">
+<link rel="stylesheet" href="/cm510/lib/codemirror.css">
+<script src="/cm510/lib/codemirror.js"></script>
+<script src="/cm510/addon/edit/matchbrackets.js"></script>
+<script src="/cm510/mode/htmlmixed/htmlmixed.js"></script>
+<script src="/cm510/mode/xml/xml.js"></script>
+<script src="/cm510/mode/javascript/javascript.js"></script>
+<script src="/cm510/mode/css/css.js"></script>
+<script src="/cm510/mode/clike/clike.js"></script>
+<script src="/cm510/mode/php/php.js"></script>
 
 <style type="text/css">
 .CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
@@ -45,7 +45,7 @@ body {
     <div class="row">
         <form class="col-md-12" id="left-pane">
             <h3>PHP here</h3>
-<textarea disabled="true" class="form-control lined" rows="25" id="code">@yield('content')</textarea>
+<textarea disabled="true" class="form-control lined" rows="25" id="code"><?php echo'<?php'; ?>@yield('content')</textarea>
 
         </form>
     </div>
