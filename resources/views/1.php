@@ -3,7 +3,7 @@
 $msg = "hello world";
 
 function def() {
-    echo 'helo';
+    echo '<h1>helo</h1>';
 }
 
 def();

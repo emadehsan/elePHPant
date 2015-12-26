@@ -29,7 +29,7 @@
             <h1>elePHPant</h1>
 
             <h3>Register</h3>
-            <form role="form" method="POST" action="/auth/register">
+            <form role="form" method="POST" action="/register">
                 {!! csrf_field() !!}
 
                 <div class="form-group">

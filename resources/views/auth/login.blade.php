@@ -31,7 +31,7 @@
 
             <h3 class="txt txt-default">Login</h3>
 
-            <form role="form" class="form" method="POST" action="/auth/login">
+            <form role="form" class="form" method="POST" action="/login">
                 {!! csrf_field() !!}
 
                 <div class="form-group">

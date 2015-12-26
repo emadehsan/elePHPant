@@ -28,27 +28,37 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::controllers ([
-        '/auth'      => 'Auth\AuthController',
+        ''      => 'Auth\AuthController',
         'password'  => 'Auth\PasswordController'
     ]);
 
-    Route::get('home', function() {
-        return 'Home';
+    /**
+    * For Logged in users only
+    */
+    Route::group(['middleware' => ['auth']], function() {
+
+        Route::get('/home', function() {
+            // $user_id = 1;
+            $user_id = Auth::user()->id;
+            return redirect()->route('home', ['user_id' => $user_id]);
+        });
+
+        // for user to view & edit code
+        // named route for logged in user's home
+        Route::get('/{user_id}/ide', ['as' => 'home', 'uses' => 'CodeController@getIDE']);
+
+        // for user to save & execute code
+        Route::post('/{user_id}/ide', 'CodeController@saveExecCode');
+
+        Route::get('/codes', function() {
+            // list of codes
+            $codes = App\Code::all();
+            return view('codes', ['codes' => $codes]);
+        });
+
+
+        // for admin to view code
+        Route::get('/{user_id}/code', 'CodeController@getCode');
     });
 
-    // for user to view & edit code
-    Route::get('/{user_id}/ide', 'CodeController@getIDE');
-    // for user to save & execute code
-    Route::post('/{user_id}/ide', 'CodeController@saveExecCode');
-
-    Route::get('/codes', function() {
-        // list of codes
-        $codes = App\Code::all();
-        return view('codes', ['codes' => $codes]);
-    });
-
-
-    // for admin to view code
-    Route::get('/{user_id}/code', 'CodeController@getCode');
-    // Route::post('/{user_id}/code', 'CodeController@saveCode');
 });
