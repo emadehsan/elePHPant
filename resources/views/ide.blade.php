@@ -73,15 +73,24 @@ body {
         action="/{{$user_id}}/ide"
         id="left-pane">
             <h3>PHP here</h3>
+            <h5 class="txt-warning">* Wrap the Code with Opening and Closing PHP tags</h5>
             {!! csrf_field() !!}
-            <textarea name="code" class="form-control lined" rows="30" id="code" placeholder="Your script here"><?php echo '<?php';?>{{$code}}</textarea>
+            <textarea name="code" class="form-control lined" rows="30" id="code" placeholder="Your script here">{{$code}}</textarea>
 
             <hr>
             <button onclick="save();" class="btn btn-success pull-right">Save & Execute</button>
         </form>
         <div class="col-md-6" id="right-pane">
             <h3>Results</h3>
-            <div class="result">@yield('result')</div>
+            <div class="result">
+                <?php
+                    $file = base_path() . '\\resources\\views\\' . $user_id . '.php';
+                    if (file_exists($file)) {
+                        include_once $file;
+                    }
+
+                ?>
+            </div>
         </div>
     </div>
 
