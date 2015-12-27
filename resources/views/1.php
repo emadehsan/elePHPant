@@ -3,7 +3,9 @@
 $msg = "hello world";
 
 function def() {
-    echo '<h1>helo</h1>';
+	global $msg;
+    echo '<h1>helo</h1><br><hr>';
+	echo $msg;
 }
 
 def();

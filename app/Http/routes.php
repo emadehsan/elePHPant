@@ -28,9 +28,11 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
     Route::controllers ([
-        ''      => 'Auth\AuthController',
+        'auth'      => 'Auth\AuthController',
         'password'  => 'Auth\PasswordController'
     ]);
+
+    // Route::controller('')
 
     /**
     * For Logged in users only

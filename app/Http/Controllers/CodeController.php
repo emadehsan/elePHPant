@@ -44,8 +44,17 @@ class CodeController extends Controller
     // displays code in IDE
     public function getIDE ($user_id)
     {
+        if ($user_id != Auth::user()->id)
+        {
+            $user_id = Auth::user()->id;
+            return redirect()->route('home', ['user_id' => $user_id]);
+        }
+
         $code = Code::where('user_id', '=', $user_id)->first();
-        return view('ide', ['user_id' => $user_id, 'code' => $code->code]);
+        $codeToSend = '';
+        if ($code)
+            $codeToSend = $code->code;
+        return view('ide', ['user_id' => $user_id, 'code' => $codeToSend]);
     }
 
     /**
@@ -72,8 +81,6 @@ class CodeController extends Controller
     public function getCode($user_id)
     {
         $code = Code::where('user_id', '=', $user_id)->first();
-        // dd($code);
-        // return response()->json($code);
         return view('code', ['code' => $code->code]);
     }
 
