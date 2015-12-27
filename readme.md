@@ -10,3 +10,6 @@
 - Migrations
 - Controllers, Models, Views (Blade)
 - Etc.
+
+### Caution
+- Add vendor directory to get the code working
